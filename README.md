@@ -1,37 +1,50 @@
-Interfaces de comunicaÁ„o serial na BitDogLab
+Projeto: Controle de LEDs RGB e Exibi√ß√£o de Posi√ß√£o do Joystick no Display SSD1306
 
-DescriÁ„o:
+Descri√ß√£o:
+Este projeto tem como objetivo consolidar os conceitos sobre o uso de conversores anal√≥gico-digitais (ADC) no microcontrolador RP2040, utilizando a placa de desenvolvimento BitDogLab. O projeto envolve o controle da intensidade de LEDs RGB com base nos valores anal√≥gicos fornecidos por um joystick, al√©m da exibi√ß√£o da posi√ß√£o do joystick em um display SSD1306 por meio de um quadrado m√≥vel.
 
-Este projeto implementa o controle de LEDs e a exibiÁ„o de caracteres na matriz de LEDs e no display da BitDogLab. A lÛgica do sistema permite a altern‚ncia de estados de LEDs e a exibiÁ„o de letras (A-Z, a-z) e n˙meros (0-9) tanto no display quanto na matriz de LEDs.
+O joystick fornece valores anal√≥gicos para os eixos X e Y, que s√£o utilizados para controlar o brilho dos LEDs RGB e mover um quadrado no display. Adicionalmente, o bot√£o do joystick e o bot√£o A t√™m funcionalidades espec√≠ficas, como alternar o estado do LED Verde e ativar/desativar os LEDs PWM.
 
-Os estados dos LEDs seguem uma lÛgica especÌfica, alternando conforme a entrada dos botıes, enquanto os caracteres s„o processados e exibidos corretamente nos dispositivos de saÌda.
+Objetivos:
+Compreender o funcionamento do conversor anal√≥gico-digital (ADC) no RP2040.
 
-Componentes Necess·rios:
+Utilizar o PWM para controlar a intensidade de dois LEDs RGB com base nos valores do joystick.
 
-BitDogLab (com matriz de LEDs, display e botıes)
-Microcontrolador RP2040
-Bibliotecas para controle do display e da matriz de LEDs
+Representar a posi√ß√£o do joystick no display SSD1306 por meio de um quadrado m√≥vel.
+
+Aplicar o protocolo de comunica√ß√£o I2C na integra√ß√£o com o display.
+
+Componentes Utilizados:
+
+BitDogLab (placa de desenvolvimento com RP2040)
+LED RGB (conectado √†s GPIOs 11, 12 e 13)
+Joystick (conectado aos GPIOs 26 e 27 para os eixos X e Y)
+Bot√£o do Joystick (conectado √† GPIO 22)
+Bot√£o A (conectado √† GPIO 5)
+Display SSD1306 (conectado via I2C, GPIOs 14 e 15)
 
 Funcionamento:
 
-No controle dos LEDs, quando os botıes s„o pressionados, os LEDs alternam entre os estados definidos.
-O estado dos LEDs È atualizado no display, e tambÈm È enviado para o serial monitor.
+Controle dos LEDs RGB:
+LED Azul: O brilho √© ajustado conforme o valor do eixo Y do joystick. Quando o joystick est√° na posi√ß√£o central (valor 2048), o LED permanece apagado. Movendo o joystick para cima (valores menores) ou para baixo (valores maiores), o brilho do LED aumenta gradualmente, atingindo a intensidade m√°xima nos extremos (0 e 4095).
 
-Na exibiÁ„o de Caracteres, o sistema reconhece e processa caracteres alfanumÈricos (A-Z, a-z, 0-9).
-O caractere atual È exibido no display OLED, e para os n˙meros tem exibiÁ„o na matriz de LEDs.
+LED Vermelho: Segue o mesmo princ√≠pio do LED Azul, mas √© controlado pelo eixo X do joystick. Movendo o joystick para a esquerda (valores menores) ou para a direita (valores maiores), o brilho do LED aumenta.
 
-InterrupÁıes e Debouncing:
+LED Verde: O estado do LED Verde √© alternado a cada pressionamento do bot√£o do joystick.
 
-O cÛdigo implementa uma lÛgica de interrupÁ„o para responder rapidamente ‡ entrada dos botıes.
-Um mecanismo de debouncing evita m˙ltiplos acionamentos acidentais.
+Exibi√ß√£o no Display SSD1306:
+Um quadrado de 8x8 pixels √© exibido no display, inicialmente centralizado. O quadrado se move proporcionalmente aos valores capturados pelo joystick nos eixos X e Y.
 
-Estrutura do CÛdigo:
+Funcionalidades Adicionais
+Bot√£o do Joystick: Alterna o estado do LED Verde e modifica o estilo da borda do display a cada pressionamento.
 
-InicializaÁ„o: Configura os pinos GPIO para LEDs e botıes.
-InterrupÁıes: Monitora os botıes e altera o estado dos LEDs e dos caracteres exibidos.
-RenderizaÁ„o: Atualiza o display e a matriz de LEDs com as informaÁıes atuais.
+Bot√£o A: Ativa ou desativa os LEDs controlados por PWM.
 
-Autor:
-Mateus Moreira da Silva
+Autor: Mateus Moreira da Silva
 
-Este projeto foi desenvolvido e testado utilizando a BitDogLab com o microcontrolador RP2040.
+Este projeto foi desenvolvido como parte da atividade pr√°tica da disciplina de programa√ß√£o de microcontroladores.
+
+Recursos
+Reposit√≥rio: Link para o reposit√≥rio
+
+V√≠deo de Demonstra√ß√£o: Link para o v√≠deo
