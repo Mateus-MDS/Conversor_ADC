@@ -45,6 +45,6 @@ Autor: Mateus Moreira da Silva
 Este projeto foi desenvolvido como parte da atividade prática da disciplina de programação de microcontroladores.
 
 Recursos
-Repositório: Link para o repositório
+Repositório: [Link para o repositório](https://github.com/Mateus-MDS/Conversor_ADC.git)
 
-Vídeo de Demonstração: Link para o vídeo
+Vídeo de Demonstração: [Link para o vídeo](https://youtube.com/shorts/9M5QDpoUrlo?feature=share)
